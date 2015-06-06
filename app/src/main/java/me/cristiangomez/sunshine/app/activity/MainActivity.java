@@ -1,9 +1,11 @@
-package me.cristiangome.sunshine;
+package me.cristiangomez.sunshine.app.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import me.cristiangomez.sunshine.R;
 
 public class MainActivity extends AppCompatActivity {
 

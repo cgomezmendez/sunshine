@@ -1,4 +1,4 @@
-package me.cristiangome.sunshine;
+package me.cristiangomez.sunshine;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
