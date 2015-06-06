@@ -6,40 +6,11 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="me.cristiangomez.sunshine.app.activity.fragment.MainActivityFragment"
     android:orientation="vertical">
+    <ListView
+        android:id="@+id/listview_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Today, June 24"
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy_weather_temperature_max"
-                android:textStyle="bold"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy_weather_temperature_min"
-                android:textStyle="bold"
-                />
-        </LinearLayout>
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="150dp"
-            android:src="@mipmap/ic_launcher" />
-    </LinearLayout>
+    </ListView>
 
 </LinearLayout>
