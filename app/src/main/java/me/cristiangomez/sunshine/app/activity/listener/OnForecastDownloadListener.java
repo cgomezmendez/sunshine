@@ -1,4 +1,4 @@
-package me.cristiangomez.sunshine.app.activity.activity.listener;
+package me.cristiangomez.sunshine.app.activity.listener;
 
 /**
  * Created by cristian on 06/06/15.

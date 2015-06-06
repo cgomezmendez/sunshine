@@ -1,5 +1,6 @@
-package me.cristiangomez.sunshine.app.activity.activity.fragment;
+package me.cristiangomez.sunshine.app.activity.fragment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,20 +9,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import me.cristiangomez.sunshine.R;
-import me.cristiangomez.sunshine.app.activity.activity.listener.OnForecastDownloadListener;
-import me.cristiangomez.sunshine.app.activity.net.FetchWeatherTask;
+import me.cristiangomez.sunshine.app.activity.DetailActivity;
+import me.cristiangomez.sunshine.app.activity.SettingsActivity;
+import me.cristiangomez.sunshine.app.activity.listener.OnForecastDownloadListener;
+import me.cristiangomez.sunshine.app.net.FetchWeatherTask;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class ForecastFragment extends Fragment implements OnForecastDownloadListener {
     private ListView mForecastListView;
+    private ArrayAdapter mForecastAdapter;
     private static final String URL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7";
 
     public ForecastFragment() {
@@ -42,28 +48,27 @@ public class ForecastFragment extends Fragment implements OnForecastDownloadList
         return view;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_refresh:
-                new FetchWeatherTask(this).execute(URL);
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
     }
 
     public void initializeView(View view) {
         ArrayList<String> forecasts = new ArrayList<>();
         mForecastListView = (ListView) view.findViewById(R.id.listview_forecast);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), R.layout.list_item_forecast,
+        mForecastAdapter = new ArrayAdapter<>(getActivity(), R.layout.list_item_forecast,
                 R.id.list_item_forecast_textview,
                 forecasts);
-        mForecastListView.setAdapter(arrayAdapter);
+        mForecastListView.setAdapter(mForecastAdapter);
+        mForecastListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(DetailActivity.cEXTRA_FORECAST, (String)mForecastAdapter.getItem(i));
+                startActivity(intent);
+            }
+        });
         requestData();
     }
 

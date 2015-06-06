@@ -1,11 +1,10 @@
-package me.cristiangomez.sunshine.app.activity.net;
+package me.cristiangomez.sunshine.app.net;
 
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,9 +13,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import me.cristiangomez.sunshine.BuildConfig;
-import me.cristiangomez.sunshine.app.activity.activity.listener.OnForecastDownloadListener;
-import me.cristiangomez.sunshine.app.activity.util.ForecastParser;
+import me.cristiangomez.sunshine.app.activity.listener.OnForecastDownloadListener;
+import me.cristiangomez.sunshine.app.util.ForecastParser;
 
 /**
  * Created by cristian on 06/06/15.
@@ -111,7 +109,6 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
                 }
             }
         }
-        Log.v(cLOG_TAG, forecastJsonStr);
         try {
             return mParser.getWeatherDataFromJson(forecastJsonStr, cCOUNT);
         } catch (JSONException e) {

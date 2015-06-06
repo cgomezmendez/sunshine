@@ -1,7 +1,6 @@
-package me.cristiangomez.sunshine.app.activity.util;
+package me.cristiangomez.sunshine.app.util;
 
 import android.text.format.Time;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
