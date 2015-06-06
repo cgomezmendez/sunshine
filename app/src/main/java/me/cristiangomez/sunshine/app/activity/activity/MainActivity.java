@@ -1,4 +1,4 @@
-package me.cristiangomez.sunshine.app.activity;
+package me.cristiangomez.sunshine.app.activity.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
