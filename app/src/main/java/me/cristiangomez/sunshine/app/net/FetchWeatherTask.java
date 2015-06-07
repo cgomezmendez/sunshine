@@ -29,10 +29,9 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
     private Uri.Builder builder;
     private static final String cPARAM_QUERY = "q";
     private static final String cPARAM_MODE = "mode";
-    private static final String cPARAM_METRIC = "metric";
+    private static final String cPARAM_UNITS = "units";
     private static final String cPARAM_COUNT = "ctn";
     private static final String cMODE = "json";
-    private static final String cUNITS = "metric";
     private static final int cCOUNT = 7;
     private static ForecastParser mParser = new ForecastParser();
     private OnForecastDownloadListener mOnForecastDownloadListener;
@@ -63,7 +62,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
             // Construct the URL for the OpenWeatherMap query
             // Possible parameters are available at OWM's forecast API page, at
             // http://openweathermap.org/API#forecast
-            URL url = new URL(buildUrl(strings[0]).toString());
+            URL url = new URL(buildUrl(strings[0], strings[1]).toString());
 
             // Create the request to OpenWeatherMap, and open the connection
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -126,14 +125,14 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
     //========================================================
     //METHODS
     //========================================================
-    private Uri buildUrl(String zipCode) {
+    private Uri buildUrl(String zipCode, String units) {
         builder.scheme("http");
         builder.authority("api.openweathermap.org");
         builder.path("/data/2.5/forecast/daily");
         builder.appendQueryParameter(cPARAM_QUERY,zipCode);
         builder.appendQueryParameter(cPARAM_MODE, cMODE);
         builder.appendQueryParameter(cPARAM_COUNT, cCOUNT+"");
-        builder.appendQueryParameter(cPARAM_METRIC, cUNITS);
+        builder.appendQueryParameter(cPARAM_UNITS, units);
         return builder.build();
     }
     //========================================================

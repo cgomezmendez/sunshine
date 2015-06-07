@@ -50,4 +50,9 @@ public class PreferenceController {
         return mSharedPreferences.getString(mContext.getString(R.string.pref_location_key),
                 mContext.getString(R.string.pref_location_default));
     }
+
+    public String getLocationUnits() {
+        return mSharedPreferences.getString(mContext.getString(R.string.pref_units_key),
+                mContext.getString(R.string.pref_units_default));
+    }
 }

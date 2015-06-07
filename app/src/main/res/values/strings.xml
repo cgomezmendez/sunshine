@@ -10,4 +10,16 @@
     <string name="pref_location_key">PREFERENCE_LOCATION_ZIP_CODE</string>
     <string name="pref_location_label">Zip code</string>
     <string name="pref_location_default">94041</string>
+    <string name="pref_units_key">PREFERENCE_UNIT</string>
+    <string name="pref_units_label">Units</string>
+    <string name="pref_units_default">metric</string>
+    
+    <array name="pref_units_entries">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </array>
+    <array name="pref_units_entries_values">
+        <item>metric</item>
+        <item>imperial</item>
+    </array>
 </resources>

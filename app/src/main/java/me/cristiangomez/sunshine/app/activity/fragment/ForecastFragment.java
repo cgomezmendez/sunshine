@@ -26,8 +26,7 @@ import me.cristiangomez.sunshine.app.util.PreferenceController;
 public class ForecastFragment extends Fragment implements OnForecastDownloadListener {
     private ListView mForecastListView;
     private ArrayAdapter mForecastAdapter;
-    private static final String URL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7";
-    PreferenceController mPrefrencesManager;
+    PreferenceController mPreferencesController;
 
     public ForecastFragment() {
     }
@@ -55,7 +54,7 @@ public class ForecastFragment extends Fragment implements OnForecastDownloadList
     }
 
     public void initialize() {
-        mPrefrencesManager = PreferenceController.getInstance();
+        mPreferencesController = PreferenceController.getInstance();
     }
 
     public void initializeView(View view) {
@@ -77,7 +76,8 @@ public class ForecastFragment extends Fragment implements OnForecastDownloadList
     }
 
     public void requestData() {
-        new FetchWeatherTask(this).execute(mPrefrencesManager.getLocationZipCode() );
+        new FetchWeatherTask(this).execute(mPreferencesController.getLocationZipCode(),
+                mPreferencesController.getLocationUnits());
     }
 
     @Override
