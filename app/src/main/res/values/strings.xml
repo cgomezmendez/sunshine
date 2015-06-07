@@ -17,6 +17,7 @@
     <string name="pref_units_imperial">imperial</string>
     <string name="action_show_location">Show location</string>
     <string name="share_message">#SunshineApp</string>
+    <string name="share_action">Share</string>
 
     <array name="pref_units_entries">
         <item>Metric</item>
