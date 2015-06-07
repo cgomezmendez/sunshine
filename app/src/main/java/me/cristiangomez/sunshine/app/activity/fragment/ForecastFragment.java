@@ -6,21 +6,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import me.cristiangomez.sunshine.R;
 import me.cristiangomez.sunshine.app.activity.DetailActivity;
-import me.cristiangomez.sunshine.app.activity.SettingsActivity;
 import me.cristiangomez.sunshine.app.activity.listener.OnForecastDownloadListener;
 import me.cristiangomez.sunshine.app.net.FetchWeatherTask;
+import me.cristiangomez.sunshine.app.util.PreferenceController;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -29,6 +27,7 @@ public class ForecastFragment extends Fragment implements OnForecastDownloadList
     private ListView mForecastListView;
     private ArrayAdapter mForecastAdapter;
     private static final String URL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7";
+    PreferenceController mPrefrencesManager;
 
     public ForecastFragment() {
     }
@@ -52,6 +51,11 @@ public class ForecastFragment extends Fragment implements OnForecastDownloadList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initialize();
+    }
+
+    public void initialize() {
+        mPrefrencesManager = PreferenceController.getInstance();
     }
 
     public void initializeView(View view) {
@@ -73,11 +77,11 @@ public class ForecastFragment extends Fragment implements OnForecastDownloadList
     }
 
     public void requestData() {
-        new FetchWeatherTask(this).execute("94043");
+        new FetchWeatherTask(this).execute(mPrefrencesManager.getLocationZipCode() );
     }
 
     @Override
     public void onForecastDownloaded(String[] forecasts) {
-        ((ArrayAdapter)mForecastListView.getAdapter()).addAll(forecasts);
+        ((ArrayAdapter) mForecastListView.getAdapter()).addAll(forecasts);
     }
 }

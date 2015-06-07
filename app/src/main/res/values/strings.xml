@@ -7,4 +7,7 @@
     <string name="dummy_weather_temperature_min">8°</string>
     <string name="refresh">Refresh</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="pref_location_key">PREFERENCE_LOCATION_ZIP_CODE</string>
+    <string name="pref_location_label">Zip code</string>
+    <string name="pref_location_default">94041</string>
 </resources>
