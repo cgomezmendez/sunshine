@@ -40,8 +40,7 @@ public class ForecastParser {
      */
     public String formatHighLows(double high, double low) {
         // For presentation, assume the user doesn't care about tenths of a degree.
-        String metric = mContext.getString(R.string.pref_units_metric);
-        String imperial = mContext.getString(R.string.pref_units_metric);
+        String imperial = mContext.getString(R.string.pref_units_imperial);
         if (mPreferencesController.getLocationUnits().equals(imperial)) {
             high = (high * 1.18) + 32;
             low = (low * 1.18) + 32;
