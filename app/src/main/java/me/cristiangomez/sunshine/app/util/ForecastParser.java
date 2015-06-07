@@ -1,5 +1,6 @@
 package me.cristiangomez.sunshine.app.util;
 
+import android.content.Context;
 import android.text.format.Time;
 
 import org.json.JSONArray;
@@ -8,11 +9,22 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 
+import me.cristiangomez.sunshine.R;
+import me.cristiangomez.sunshine.app.Sunshine;
+
 /**
  * Created by cristian on 06/06/15.
  */
 public class ForecastParser {
     private static final String cLOG_TAG = ForecastParser.class.getSimpleName();
+    private static PreferenceController mPreferencesController;
+    private Context mContext;
+
+    public ForecastParser() {
+        mPreferencesController = PreferenceController.getInstance();
+        mContext = Sunshine.getInstance();
+    }
+
     /* The date/time conversion code is going to be moved outside the asynctask later,
      * so for convenience we're breaking it out into its own method now.
      */
@@ -28,6 +40,12 @@ public class ForecastParser {
      */
     public String formatHighLows(double high, double low) {
         // For presentation, assume the user doesn't care about tenths of a degree.
+        String metric = mContext.getString(R.string.pref_units_metric);
+        String imperial = mContext.getString(R.string.pref_units_metric);
+        if (mPreferencesController.getLocationUnits().equals(imperial)) {
+            high = (high * 1.18) + 32;
+            low = (low * 1.18) + 32;
+        }
         long roundedHigh = Math.round(high);
         long roundedLow = Math.round(low);
 

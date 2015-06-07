@@ -76,8 +76,7 @@ public class ForecastFragment extends Fragment implements OnForecastDownloadList
     }
 
     public void requestData() {
-        new FetchWeatherTask(this).execute(mPreferencesController.getLocationZipCode(),
-                mPreferencesController.getLocationUnits());
+        new FetchWeatherTask(this).execute(mPreferencesController.getLocationZipCode());
     }
 
     @Override
